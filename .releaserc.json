@@ -8,6 +8,8 @@
         {"tag": "chore",  "release": "patch"},
         {"tag": "docs",   "release": "patch"},
         {"tag": "fix",    "release": "patch"},
+        {"tag": "init",   "release": "major"},
+        {"tag": "maint",  "release": "minor"},
         {"tag": "new",    "release": "minor"},
         {"tag": "update", "release": "minor"}
       ]
@@ -15,10 +17,12 @@
     ["@google/semantic-release-replace-plugin", {
         "replacements": [
           {
-            "files": ["VERSION"],
-            "from": "^([0-9]).+([0-9]).+([0-9])$",
-            "to": "${nextRelease.version}",
-            "results": [ { "file": "VERSION", "hasChanged": true }
+            "files": ["README.md", "VERSION"],
+            "from": "([v]?[0-9]).+([0-9]).+([0-9])",
+            "to": "v${nextRelease.version}",
+            "results": [
+                { "file": "README.md", "hasChanged": true},
+                { "file": "VERSION", "hasChanged": true}
             ]
           }
         ]
@@ -27,8 +31,8 @@
     ["@semantic-release/release-notes-generator", { "preset": "eslint" }],
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" } ],
     ["@semantic-release/git", {
-        "assets": ["CHANGELOG.md", "VERSION"],
-        "message": "release: v${lastRelease.version} → v${nextRelease.version}\n\n${nextRelease.notes}"
+        "assets": ["CHANGELOG.md", "VERSION", "README.md"],
+        "message": "release: v${lastRelease.version || '0.0.0' } → v${nextRelease.version}\n\n${nextRelease.notes}"
       }
     ],
     "@semantic-release/github"
