@@ -2,7 +2,7 @@
 
 |                                  version                                  |
 | :-----------------------------------------------------------------------: |
-| [v1.1.0](https://github.com/vladdoster/sem-ver-repo-boilerplate/releases) |
+| [v1.0.0](https://github.com/vladdoster/sem-ver-repo-boilerplate/releases) |
 
 ## Features
 
